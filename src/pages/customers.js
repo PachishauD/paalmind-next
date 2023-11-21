@@ -24,7 +24,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-carson-darrin.png',
     createdAt: subDays(subHours(now, 7), 1).getTime(),
-    email: 'carson.darrin@devias.io',
+    email: '0xDd51ea238d361e19DD22fcc81E96B70A6d7B2D2C',
     name: 'Carson Darrin',
     phone: '304-428-3097'
   },
@@ -38,7 +38,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-fran-perez.png',
     createdAt: subDays(subHours(now, 1), 2).getTime(),
-    email: 'fran.perez@devias.io',
+    email: '0xpbBeBd1C3BfCd0f4AC061aFfF577916D5aDAe017',
     name: 'Fran Perez',
     phone: '712-351-5711'
   },
@@ -52,7 +52,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-jie-yan-song.png',
     createdAt: subDays(subHours(now, 4), 2).getTime(),
-    email: 'jie.yan.song@devias.io',
+    email: '0xe36e19DA6d7B2D2CD22fcc81E96B70Dd51ea238d',
     name: 'Jie Yan Song',
     phone: '770-635-2682'
   },
@@ -66,7 +66,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-anika-visser.png',
     createdAt: subDays(subHours(now, 11), 2).getTime(),
-    email: 'anika.visser@devias.io',
+    email: '0xA1c150189b481ee70adCdf271dDE5734DC7C37C6',
     name: 'Anika Visser',
     phone: '908-691-3242'
   },
@@ -80,7 +80,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-miron-vitold.png',
     createdAt: subDays(subHours(now, 7), 3).getTime(),
-    email: 'miron.vitold@devias.io',
+    email: '0xD1c1501ee70adCdf271dDE5734DC7C37C6189b48',
     name: 'Miron Vitold',
     phone: '972-333-4106'
   },
@@ -94,7 +94,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-penjani-inyene.png',
     createdAt: subDays(subHours(now, 5), 4).getTime(),
-    email: 'penjani.inyene@devias.io',
+    email: '0xD22fcc81E96B70Dd51ea238d361e19DA6d7B2D2C',
     name: 'Penjani Inyene',
     phone: '858-602-3409'
   },
@@ -108,7 +108,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-omar-darboe.png',
     createdAt: subDays(subHours(now, 15), 4).getTime(),
-    email: 'omar.darobe@devias.io',
+    email: '0xDd51ea238d361e19DD22fcc81E96B70A6d7B2D2C',
     name: 'Omar Darobe',
     phone: '415-907-2647'
   },
@@ -122,7 +122,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-siegbert-gottfried.png',
     createdAt: subDays(subHours(now, 2), 5).getTime(),
-    email: 'siegbert.gottfried@devias.io',
+    email: '0xpbBeBd1C3BfCd0f4AC061aFfF577916D5aDAe017',
     name: 'Siegbert Gottfried',
     phone: '702-661-1654'
   },
@@ -136,7 +136,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-iulia-albu.png',
     createdAt: subDays(subHours(now, 8), 6).getTime(),
-    email: 'iulia.albu@devias.io',
+    email: '0xe36e19DA6d7B2D2CD22fcc81E96B70Dd51ea238d',
     name: 'Iulia Albu',
     phone: '313-812-8947'
   },
@@ -150,7 +150,7 @@ const data = [
     },
     avatar: '/assets/avatars/avatar-nasimiyu-danai.png',
     createdAt: subDays(subHours(now, 1), 9).getTime(),
-    email: 'nasimiyu.danai@devias.io',
+    email: '0xA1c150189b481ee70adCdf271dDE5734DC7C37C6',
     name: 'Nasimiyu Danai',
     phone: '801-301-7894'
   }
