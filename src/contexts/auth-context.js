@@ -128,7 +128,7 @@ export const AuthProvider = (props) => {
   };
 
   const signIn = async (email, password) => {
-    if (email !== 'paalmind@gmail.com' || password !== 'Password123!') {
+    if (email !== 'paalmind@gmail.com' || password !== 'Password!234') {
       throw new Error('Please check your email and password');
     }
 
