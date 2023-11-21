@@ -20,8 +20,8 @@ import { SeverityPill } from 'src/components/severity-pill';
 
 const statusMap = {
   pending: 'warning',
-  delivered: 'success',
-  refunded: 'error'
+  Won: 'success',
+  Loss: 'error'
 };
 
 export const OverviewLatestOrders = (props) => {
@@ -29,14 +29,14 @@ export const OverviewLatestOrders = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Latest Orders" />
+      <CardHeader title="Latest Bets" />
       <Scrollbar sx={{ flexGrow: 1 }}>
         <Box sx={{ minWidth: 800 }}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>
-                  Order
+                  BetID
                 </TableCell>
                 <TableCell>
                   Customer

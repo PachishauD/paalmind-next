@@ -114,63 +114,63 @@ const Page = () => (
               orders={[
                 {
                   id: 'f69f88012978187a6c12897f',
-                  ref: 'DEV1049',
+                  ref: '0xf69f...',
                   amount: 30.5,
                   customer: {
-                    name: 'Ekaterina Tankova'
+                    name: '0xDd51ea238d361e19DD22fcc81E96B70A6d7B2D2C'
                   },
                   createdAt: 1555016400000,
                   status: 'pending'
                 },
                 {
                   id: '9eaa1c7dd4433f413c308ce2',
-                  ref: 'DEV1048',
+                  ref: '0xheaa...',
                   amount: 25.1,
                   customer: {
-                    name: 'Cao Yu'
+                    name: '0xpbBeBd1C3BfCd0f4AC061aFfF577916D5aDAe017'
                   },
                   createdAt: 1555016400000,
-                  status: 'delivered'
+                  status: 'Won'
                 },
                 {
                   id: '01a5230c811bd04996ce7c13',
-                  ref: 'DEV1047',
+                  ref: '0xd1a5...',
                   amount: 10.99,
                   customer: {
-                    name: 'Alexa Richardson'
+                    name: '0xe36e19DA6d7B2D2CD22fcc81E96B70Dd51ea238d'
                   },
                   createdAt: 1554930000000,
-                  status: 'refunded'
+                  status: 'Loss'
                 },
                 {
                   id: '1f4e1bd0a87cea23cdb83d18',
-                  ref: 'DEV1046',
+                  ref: '0xbd0a...',
                   amount: 96.43,
                   customer: {
-                    name: 'Anje Keizer'
+                    name: '0xA1c150189b481ee70adCdf271dDE5734DC7C37C6'
                   },
                   createdAt: 1554757200000,
                   status: 'pending'
                 },
                 {
                   id: '9f974f239d29ede969367103',
-                  ref: 'DEV1045',
+                  ref: '0xf239...',
                   amount: 32.54,
                   customer: {
-                    name: 'Clarke Gillebert'
+                    name: '0xD1c1501ee70adCdf271dDE5734DC7C37C6189b48'
                   },
                   createdAt: 1554670800000,
-                  status: 'delivered'
+                  status: 'Won'
                 },
                 {
                   id: 'ffc83c1560ec2f66a1c05596',
-                  ref: 'DEV1044',
+                  ref: '0xffc8...',
                   amount: 16.76,
                   customer: {
-                    name: 'Adam Denisov'
+                    name: '0xD22fcc81E96B70Dd51ea238d361e19DA6d7B2D2C'
                   },
                   createdAt: 1554670800000,
-                  status: 'delivered'
+                  status: 'Won'
                 }
               ]}
               sx={{ height: '100%' }}
