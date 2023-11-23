@@ -1,177 +1,171 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import Head from 'next/head';
-import { subDays, subHours } from 'date-fns';
-import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
-import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
-import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import { Box, Button, Container, Stack, SvgIcon, Typography } from '@mui/material';
-import { useSelection } from 'src/hooks/use-selection';
-import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { CustomersTable } from 'src/sections/customer/customers-table';
-import { CustomersSearch } from 'src/sections/customer/customers-search';
-import { applyPagination } from 'src/utils/apply-pagination';
-import axios from 'axios';
+import { useCallback, useEffect, useMemo, useState } from "react";
+import Head from "next/head";
+import { subDays, subHours } from "date-fns";
+import ArrowDownOnSquareIcon from "@heroicons/react/24/solid/ArrowDownOnSquareIcon";
+import ArrowUpOnSquareIcon from "@heroicons/react/24/solid/ArrowUpOnSquareIcon";
+import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
+import { Box, Button, Container, Stack, SvgIcon, Typography } from "@mui/material";
+import { useSelection } from "src/hooks/use-selection";
+import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
+import { CustomersTable } from "src/sections/customer/customers-table";
+import { CustomersSearch } from "src/sections/customer/customers-search";
+import { applyPagination } from "src/utils/apply-pagination";
+import axios from "axios";
 const now = new Date();
 
 const data = [
   {
-    id: '5e887ac47eed253091be10cb',
+    id: "5e887ac47eed253091be10cb",
     address: {
-      city: 'Cleveland',
-      country: 'USA',
-      state: 'Ohio',
-      street: '2849 Fulton Street'
+      city: "Cleveland",
+      country: "USA",
+      state: "Ohio",
+      street: "2849 Fulton Street",
     },
-    avatar: '/assets/avatars/avatar-carson-darrin.png',
+    avatar: "/assets/avatars/avatar-carson-darrin.png",
     createdAt: subDays(subHours(now, 7), 1).getTime(),
-    email: '0xDd51ea238d361e19DD22fcc81E96B70A6d7B2D2C',
-    name: 'Carson Darrin',
-    phone: '304-428-3097'
+    email: "0xDd51ea238d361e19DD22fcc81E96B70A6d7B2D2C",
+    name: "Carson Darrin",
+    phone: "304-428-3097",
   },
   {
-    id: '5e887b209c28ac3dd97f6db5',
+    id: "5e887b209c28ac3dd97f6db5",
     address: {
-      city: 'Atlanta',
-      country: 'USA',
-      state: 'Georgia',
-      street: '1865  Pleasant Hill Road'
+      city: "Atlanta",
+      country: "USA",
+      state: "Georgia",
+      street: "1865  Pleasant Hill Road",
     },
-    avatar: '/assets/avatars/avatar-fran-perez.png',
+    avatar: "/assets/avatars/avatar-fran-perez.png",
     createdAt: subDays(subHours(now, 1), 2).getTime(),
-    email: '0xpbBeBd1C3BfCd0f4AC061aFfF577916D5aDAe017',
-    name: 'Fran Perez',
-    phone: '712-351-5711'
+    email: "0xpbBeBd1C3BfCd0f4AC061aFfF577916D5aDAe017",
+    name: "Fran Perez",
+    phone: "712-351-5711",
   },
   {
-    id: '5e887b7602bdbc4dbb234b27',
+    id: "5e887b7602bdbc4dbb234b27",
     address: {
-      city: 'North Canton',
-      country: 'USA',
-      state: 'Ohio',
-      street: '4894  Lakeland Park Drive'
+      city: "North Canton",
+      country: "USA",
+      state: "Ohio",
+      street: "4894  Lakeland Park Drive",
     },
-    avatar: '/assets/avatars/avatar-jie-yan-song.png',
+    avatar: "/assets/avatars/avatar-jie-yan-song.png",
     createdAt: subDays(subHours(now, 4), 2).getTime(),
-    email: '0xe36e19DA6d7B2D2CD22fcc81E96B70Dd51ea238d',
-    name: 'Jie Yan Song',
-    phone: '770-635-2682'
+    email: "0xe36e19DA6d7B2D2CD22fcc81E96B70Dd51ea238d",
+    name: "Jie Yan Song",
+    phone: "770-635-2682",
   },
   {
-    id: '5e86809283e28b96d2d38537',
+    id: "5e86809283e28b96d2d38537",
     address: {
-      city: 'Madrid',
-      country: 'Spain',
-      name: 'Anika Visser',
-      street: '4158  Hedge Street'
+      city: "Madrid",
+      country: "Spain",
+      name: "Anika Visser",
+      street: "4158  Hedge Street",
     },
-    avatar: '/assets/avatars/avatar-anika-visser.png',
+    avatar: "/assets/avatars/avatar-anika-visser.png",
     createdAt: subDays(subHours(now, 11), 2).getTime(),
-    email: '0xA1c150189b481ee70adCdf271dDE5734DC7C37C6',
-    name: 'Anika Visser',
-    phone: '908-691-3242'
+    email: "0xA1c150189b481ee70adCdf271dDE5734DC7C37C6",
+    name: "Anika Visser",
+    phone: "908-691-3242",
   },
   {
-    id: '5e86805e2bafd54f66cc95c3',
+    id: "5e86805e2bafd54f66cc95c3",
     address: {
-      city: 'San Diego',
-      country: 'USA',
-      state: 'California',
-      street: '75247'
+      city: "San Diego",
+      country: "USA",
+      state: "California",
+      street: "75247",
     },
-    avatar: '/assets/avatars/avatar-miron-vitold.png',
+    avatar: "/assets/avatars/avatar-miron-vitold.png",
     createdAt: subDays(subHours(now, 7), 3).getTime(),
-    email: '0xD1c1501ee70adCdf271dDE5734DC7C37C6189b48',
-    name: 'Miron Vitold',
-    phone: '972-333-4106'
+    email: "0xD1c1501ee70adCdf271dDE5734DC7C37C6189b48",
+    name: "Miron Vitold",
+    phone: "972-333-4106",
   },
   {
-    id: '5e887a1fbefd7938eea9c981',
+    id: "5e887a1fbefd7938eea9c981",
     address: {
-      city: 'Berkeley',
-      country: 'USA',
-      state: 'California',
-      street: '317 Angus Road'
+      city: "Berkeley",
+      country: "USA",
+      state: "California",
+      street: "317 Angus Road",
     },
-    avatar: '/assets/avatars/avatar-penjani-inyene.png',
+    avatar: "/assets/avatars/avatar-penjani-inyene.png",
     createdAt: subDays(subHours(now, 5), 4).getTime(),
-    email: '0xD22fcc81E96B70Dd51ea238d361e19DA6d7B2D2C',
-    name: 'Penjani Inyene',
-    phone: '858-602-3409'
+    email: "0xD22fcc81E96B70Dd51ea238d361e19DA6d7B2D2C",
+    name: "Penjani Inyene",
+    phone: "858-602-3409",
   },
   {
-    id: '5e887d0b3d090c1b8f162003',
+    id: "5e887d0b3d090c1b8f162003",
     address: {
-      city: 'Carson City',
-      country: 'USA',
-      state: 'Nevada',
-      street: '2188  Armbrester Drive'
+      city: "Carson City",
+      country: "USA",
+      state: "Nevada",
+      street: "2188  Armbrester Drive",
     },
-    avatar: '/assets/avatars/avatar-omar-darboe.png',
+    avatar: "/assets/avatars/avatar-omar-darboe.png",
     createdAt: subDays(subHours(now, 15), 4).getTime(),
-    email: '0xDd51ea238d361e19DD22fcc81E96B70A6d7B2D2C',
-    name: 'Omar Darobe',
-    phone: '415-907-2647'
+    email: "0xDd51ea238d361e19DD22fcc81E96B70A6d7B2D2C",
+    name: "Omar Darobe",
+    phone: "415-907-2647",
   },
   {
-    id: '5e88792be2d4cfb4bf0971d9',
+    id: "5e88792be2d4cfb4bf0971d9",
     address: {
-      city: 'Los Angeles',
-      country: 'USA',
-      state: 'California',
-      street: '1798  Hickory Ridge Drive'
+      city: "Los Angeles",
+      country: "USA",
+      state: "California",
+      street: "1798  Hickory Ridge Drive",
     },
-    avatar: '/assets/avatars/avatar-siegbert-gottfried.png',
+    avatar: "/assets/avatars/avatar-siegbert-gottfried.png",
     createdAt: subDays(subHours(now, 2), 5).getTime(),
-    email: '0xpbBeBd1C3BfCd0f4AC061aFfF577916D5aDAe017',
-    name: 'Siegbert Gottfried',
-    phone: '702-661-1654'
+    email: "0xpbBeBd1C3BfCd0f4AC061aFfF577916D5aDAe017",
+    name: "Siegbert Gottfried",
+    phone: "702-661-1654",
   },
   {
-    id: '5e8877da9a65442b11551975',
+    id: "5e8877da9a65442b11551975",
     address: {
-      city: 'Murray',
-      country: 'USA',
-      state: 'Utah',
-      street: '3934  Wildrose Lane'
+      city: "Murray",
+      country: "USA",
+      state: "Utah",
+      street: "3934  Wildrose Lane",
     },
-    avatar: '/assets/avatars/avatar-iulia-albu.png',
+    avatar: "/assets/avatars/avatar-iulia-albu.png",
     createdAt: subDays(subHours(now, 8), 6).getTime(),
-    email: '0xe36e19DA6d7B2D2CD22fcc81E96B70Dd51ea238d',
-    name: 'Iulia Albu',
-    phone: '313-812-8947'
+    email: "0xe36e19DA6d7B2D2CD22fcc81E96B70Dd51ea238d",
+    name: "Iulia Albu",
+    phone: "313-812-8947",
   },
   {
-    id: '5e8680e60cba5019c5ca6fda',
+    id: "5e8680e60cba5019c5ca6fda",
     address: {
-      city: 'Salt Lake City',
-      country: 'USA',
-      state: 'Utah',
-      street: '368 Lamberts Branch Road'
+      city: "Salt Lake City",
+      country: "USA",
+      state: "Utah",
+      street: "368 Lamberts Branch Road",
     },
-    avatar: '/assets/avatars/avatar-nasimiyu-danai.png',
+    avatar: "/assets/avatars/avatar-nasimiyu-danai.png",
     createdAt: subDays(subHours(now, 1), 9).getTime(),
-    email: '0xA1c150189b481ee70adCdf271dDE5734DC7C37C6',
-    name: 'Nasimiyu Danai',
-    phone: '801-301-7894'
-  }
+    email: "0xA1c150189b481ee70adCdf271dDE5734DC7C37C6",
+    name: "Nasimiyu Danai",
+    phone: "801-301-7894",
+  },
 ];
 
 const useCustomers = (page, rowsPerPage) => {
-  return useMemo(
-    () => {
-      return applyPagination(data, page, rowsPerPage);
-    },
-    [page, rowsPerPage]
-  );
+  return useMemo(() => {
+    return applyPagination(data, page, rowsPerPage);
+  }, [page, rowsPerPage]);
 };
 
 const useCustomerIds = (customers) => {
-  return useMemo(
-    () => {
-      return customers.map((customer) => customer.id);
-    },
-    [customers]
-  );
+  return useMemo(() => {
+    return customers.map((customer) => customer.id);
+  }, [customers]);
 };
 
 const Page = () => {
@@ -182,78 +176,65 @@ const Page = () => {
   const customersSelection = useSelection(customersIds);
   const [users, setUsers] = useState([]);
 
-  const handlePageChange = useCallback(
-    (event, value) => {
-      setPage(value);
-    },
-    []
-  );
+  const handlePageChange = useCallback((event, value) => {
+    setPage(value);
+  }, []);
 
-  const handleRowsPerPageChange = useCallback(
-    (event) => {
-      setRowsPerPage(event.target.value);
-    },
-    []
-  );
+  const handleRowsPerPageChange = useCallback((event) => {
+    setRowsPerPage(event.target.value);
+  }, []);
 
   useEffect(() => {
-    axios.get('https:///6727-34-135-72-108.ngrok.io/transactions')
-      .then(response => {
+    axios
+      .get("https://b630-34-135-72-108.ngrok-free.app/transactions", {
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+        },
+      })
+      .then((response) => {
         setUsers(response.data);
       })
-      .catch(error => {
-        console.log('error', error);
+      .catch((error) => {
+        console.log("error", error);
       });
   }, []);
 
-  console.log('transactions', users)
+  console.log("transactions", users);
   return (
     <>
       <Head>
-        <title>
-          Customers | Devias Kit
-        </title>
+        <title>Customers | Devias Kit</title>
       </Head>
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
         <Container maxWidth="xl">
           <Stack spacing={3}>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              spacing={4}
-            >
+            <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
-                <Typography variant="h4">
-                  Transactions
-                </Typography>
-                <Stack
-                  alignItems="center"
-                  direction="row"
-                  spacing={1}
-                >
+                <Typography variant="h4">Transactions</Typography>
+                <Stack alignItems="center" direction="row" spacing={1}>
                   <Button
                     color="inherit"
-                    startIcon={(
+                    startIcon={
                       <SvgIcon fontSize="small">
                         <ArrowUpOnSquareIcon />
                       </SvgIcon>
-                    )}
+                    }
                   >
                     Import
                   </Button>
                   <Button
                     color="inherit"
-                    startIcon={(
+                    startIcon={
                       <SvgIcon fontSize="small">
                         <ArrowDownOnSquareIcon />
                       </SvgIcon>
-                    )}
+                    }
                   >
                     Export
                   </Button>
@@ -261,11 +242,11 @@ const Page = () => {
               </Stack>
               <div>
                 <Button
-                  startIcon={(
+                  startIcon={
                     <SvgIcon fontSize="small">
                       <PlusIcon />
                     </SvgIcon>
-                  )}
+                  }
                   variant="contained"
                 >
                   Add
@@ -294,10 +275,6 @@ const Page = () => {
   );
 };
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Page;

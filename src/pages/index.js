@@ -22,24 +22,51 @@ const Page = () => {
   const [transactions, setTransactios] = useState({});
   const [usersBets, setUsersBets] = useState([]);
   const [wallets, setWallets] = useState([]);
+
+  const headers = {
+    "ngrok-skip-browser-warning": "69420",
+  };
   useEffect(() => {
-    axios.get('https:///6727-34-135-72-108.ngrok.io/customers')
-      .then(response => {
+    axios
+      .get("https:///b630-34-135-72-108.ngrok-free.app/customers", {
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+        },
+      })
+      .then((response) => {
         setUsers(response.data);
       })
-      .catch(error => {
-        console.log('error', error);
+      .catch((error) => {
+        console.log("error", error);
       });
-    axios.get('https:///6727-34-135-72-108.ngrok.io/get_wallets')
-      .then(response => {
+    axios
+      .get("https:///b630-34-135-72-108.ngrok-free.app/get_wallets", {
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+        },
+      })
+      .then((response) => {
         setWallets(response.data);
       })
-      .catch(error => {
-        console.log('error', error);
+      .catch((error) => {
+        console.log("error", error);
+      });
+    axios
+      .get("https://b630-34-135-72-108.ngrok-free.app/transactions", {
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+        },
+      })
+      .then((response) => {
+        setTransactios(response.data);
+      })
+      .catch((error) => {
+        console.log("error", error);
       });
   }, []);
-  console.log('users', users);
+
   const numUsers = users.length;
+  const numTransactions = transactions.length
 
   return (
     <>
@@ -60,7 +87,7 @@ const Page = () => {
                 difference={12}
                 positive
                 sx={{ height: "100%" }}
-                value={overview.value}
+                value={numTransactions}
               />
             </Grid>
             <Grid xs={12} sm={6} lg={3}>
@@ -90,10 +117,7 @@ const Page = () => {
               />
             </Grid>
             <Grid xs={12} md={12} lg={8}>
-              <OverviewUsersBets
-                wallets={wallets}
-                sx={{ height: "100%" }}
-              />
+              <OverviewUsersBets wallets={wallets} sx={{ height: "100%" }} />
             </Grid>
           </Grid>
         </Container>
