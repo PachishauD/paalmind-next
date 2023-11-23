@@ -29,12 +29,13 @@ export const CustomersTable = (props) => {
     onSelectOne,
     page = 0,
     rowsPerPage = 0,
-    selected = []
+    selected = [],
+    users
   } = props;
 
   const selectedSome = (selected.length > 0) && (selected.length < items.length);
   const selectedAll = (items.length > 0) && (selected.length === items.length);
-
+  console.log('users', users)
   return (
     <Card>
       <Scrollbar>
@@ -56,31 +57,34 @@ export const CustomersTable = (props) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Name
+                  Username
                 </TableCell>
                 <TableCell>
                   Wallet Address
                 </TableCell>
                 <TableCell>
-                  Location
+                  hash
                 </TableCell>
                 <TableCell>
-                  Phone
+                  amount
                 </TableCell>
                 <TableCell>
-                  Signed Up
+                  token
+                </TableCell>
+                <TableCell>
+                  timestamp
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {items.map((customer) => {
-                const isSelected = selected.includes(customer.id);
-                const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
+              {users.map((customer, i) => {
+                const isSelected = selected.includes(i + 1);
+                // const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
                     hover
-                    key={customer.id}
+                    key={i + 1}
                     selected={isSelected}
                   >
                     <TableCell padding="checkbox">
@@ -88,12 +92,15 @@ export const CustomersTable = (props) => {
                         checked={isSelected}
                         onChange={(event) => {
                           if (event.target.checked) {
-                            onSelectOne?.(customer.id);
+                            onSelectOne?.(i + 1);
                           } else {
-                            onDeselectOne?.(customer.id);
+                            onDeselectOne?.(i + 1);
                           }
                         }}
                       />
+                    </TableCell>
+                    <TableCell>
+                      {i + 1}
                     </TableCell>
                     <TableCell>
                       <Stack
@@ -101,25 +108,16 @@ export const CustomersTable = (props) => {
                         direction="row"
                         spacing={2}
                       >
-                        <Avatar src={customer.avatar}>
+                        <Avatar src={items[i].avatar}>
                           {getInitials(customer.name)}
                         </Avatar>
                         <Typography variant="subtitle2">
-                          {customer.name}
+                          {customer[1]}
                         </Typography>
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.email}
-                    </TableCell>
-                    <TableCell>
-                      {customer.address.city}, {customer.address.state}, {customer.address.country}
-                    </TableCell>
-                    <TableCell>
-                      {customer.phone}
-                    </TableCell>
-                    <TableCell>
-                      {createdAt}
+                      {customer[2]}
                     </TableCell>
                   </TableRow>
                 );

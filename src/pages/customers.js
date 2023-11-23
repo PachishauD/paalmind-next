@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
 import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
@@ -180,6 +180,7 @@ const Page = () => {
   const customers = useCustomers(page, rowsPerPage);
   const customersIds = useCustomerIds(customers);
   const customersSelection = useSelection(customersIds);
+  const [users, setUsers] = useState([]);
 
   const handlePageChange = useCallback(
     (event, value) => {
@@ -194,6 +195,14 @@ const Page = () => {
     },
     []
   );
+
+  useEffect(() => {
+    fetch("/api/total-customers")
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data);
+      })
+  }, []);
 
   return (
     <>
@@ -218,7 +227,7 @@ const Page = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h4">
-                  Customers
+                  Transactions
                 </Typography>
                 <Stack
                   alignItems="center"
@@ -262,8 +271,9 @@ const Page = () => {
             </Stack>
             <CustomersSearch />
             <CustomersTable
-              count={data.length}
+              count={users.length}
               items={customers}
+              users={users}
               onDeselectAll={customersSelection.handleDeselectAll}
               onDeselectOne={customersSelection.handleDeselectOne}
               onPageChange={handlePageChange}
