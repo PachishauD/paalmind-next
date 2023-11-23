@@ -1,6 +1,6 @@
-import { format } from 'date-fns';
-import PropTypes from 'prop-types';
-import ArrowRightIcon from '@heroicons/react/24/solid/ArrowRightIcon';
+import { format } from "date-fns";
+import PropTypes from "prop-types";
+import ArrowRightIcon from "@heroicons/react/24/solid/ArrowRightIcon";
 import {
   Box,
   Button,
@@ -13,66 +13,43 @@ import {
   TableBody,
   TableCell,
   TableHead,
-  TableRow
-} from '@mui/material';
-import { Scrollbar } from 'src/components/scrollbar';
-import { SeverityPill } from 'src/components/severity-pill';
+  TableRow,
+} from "@mui/material";
+import { Scrollbar } from "src/components/scrollbar";
+import { SeverityPill } from "src/components/severity-pill";
+import { useEffect } from "react";
 
 const statusMap = {
-  pending: 'warning',
-  Won: 'success',
-  Loss: 'error'
+  pending: "warning",
+  Won: "success",
+  Loss: "error",
 };
 
-export const OverviewLatestOrders = (props) => {
-  const { orders = [], sx } = props;
-
+export const OverviewUsersBets = (props) => {
+  const { wallets = [], sx } = props;
   return (
     <Card sx={sx}>
-      <CardHeader title="Latest Bets" />
+      <CardHeader title="Registered Wallets" />
       <Scrollbar sx={{ flexGrow: 1 }}>
         <Box sx={{ minWidth: 800 }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>
-                  BetID
-                </TableCell>
-                <TableCell>
-                  Customer
-                </TableCell>
-                <TableCell sortDirection="desc">
-                  Date
-                </TableCell>
-                <TableCell>
-                  Status
-                </TableCell>
+                <TableCell>id</TableCell>
+                <TableCell>Username</TableCell>
+                <TableCell>Wallet Name</TableCell>
+                <TableCell>Wallet Address</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.map((order) => {
-                const createdAt = format(order.createdAt, 'dd/MM/yyyy');
-
-                return (
-                  <TableRow
-                    hover
-                    key={order.id}
-                  >
-                    <TableCell>
-                      {order.ref}
-                    </TableCell>
-                    <TableCell>
-                      {order.customer.name}
-                    </TableCell>
-                    <TableCell>
-                      {createdAt}
-                    </TableCell>
-                    <TableCell>
-                      <SeverityPill color={statusMap[order.status]}>
-                        {order.status}
-                      </SeverityPill>
-                    </TableCell>
-                  </TableRow>
+              {wallets.map((wallet, i) => {
+                return(
+                  <TableRow hover key={i + 1}>
+                  <TableCell>{i + 1}</TableCell>
+                  <TableCell>{wallet[0]}</TableCell>
+                  <TableCell>{wallet[2]}</TableCell>
+                  <TableCell>{wallet[3]}</TableCell>
+                </TableRow>
                 );
               })}
             </TableBody>
@@ -80,14 +57,14 @@ export const OverviewLatestOrders = (props) => {
         </Box>
       </Scrollbar>
       <Divider />
-      <CardActions sx={{ justifyContent: 'flex-end' }}>
+      <CardActions sx={{ justifyContent: "flex-end" }}>
         <Button
           color="inherit"
-          endIcon={(
+          endIcon={
             <SvgIcon fontSize="small">
               <ArrowRightIcon />
             </SvgIcon>
-          )}
+          }
           size="small"
           variant="text"
         >
@@ -98,7 +75,7 @@ export const OverviewLatestOrders = (props) => {
   );
 };
 
-OverviewLatestOrders.prototype = {
-  orders: PropTypes.array,
-  sx: PropTypes.object
+OverviewUsersBets.prototype = {
+  usersBets: PropTypes.array,
+  sx: PropTypes.object,
 };
