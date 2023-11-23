@@ -23,14 +23,14 @@ const Page = () => {
   const [usersBets, setUsersBets] = useState([]);
   const [wallets, setWallets] = useState([]);
   useEffect(() => {
-    axios.get('https://aab1-34-135-72-108.ngrok.io/customers')
+    axios.get('https:///6727-34-135-72-108.ngrok.io/customers')
       .then(response => {
         setUsers(response.data);
       })
       .catch(error => {
         console.log('error', error);
       });
-    axios.get('https://aab1-34-135-72-108.ngrok.io/get_wallets')
+    axios.get('https:///6727-34-135-72-108.ngrok.io/get_wallets')
       .then(response => {
         setWallets(response.data);
       })
