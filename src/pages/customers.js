@@ -10,7 +10,7 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/customers-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
-
+import axios from 'axios';
 const now = new Date();
 
 const data = [
@@ -197,13 +197,16 @@ const Page = () => {
   );
 
   useEffect(() => {
-    fetch("/api/total-customers")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
+    axios.get('https:///6727-34-135-72-108.ngrok.io/transactions')
+      .then(response => {
+        setUsers(response.data);
       })
+      .catch(error => {
+        console.log('error', error);
+      });
   }, []);
 
+  console.log('transactions', users)
   return (
     <>
       <Head>

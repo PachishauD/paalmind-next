@@ -66,6 +66,9 @@ export const CustomersTable = (props) => {
                   hash
                 </TableCell>
                 <TableCell>
+                  type
+                </TableCell>
+                <TableCell>
                   amount
                 </TableCell>
                 <TableCell>
@@ -100,24 +103,25 @@ export const CustomersTable = (props) => {
                       />
                     </TableCell>
                     <TableCell>
-                      {i + 1}
+                      {customer[0]}
                     </TableCell>
                     <TableCell>
-                      <Stack
-                        alignItems="center"
-                        direction="row"
-                        spacing={2}
-                      >
-                        <Avatar src={items[i].avatar}>
-                          {getInitials(customer.name)}
-                        </Avatar>
-                        <Typography variant="subtitle2">
-                          {customer[1]}
-                        </Typography>
-                      </Stack>
+                      {customer[1]}
                     </TableCell>
                     <TableCell>
                       {customer[2]}
+                    </TableCell>
+                    <TableCell>
+                      {customer[3]}
+                    </TableCell>
+                    <TableCell>
+                      {customer[4]}
+                    </TableCell>
+                    <TableCell>
+                      {customer[5]}
+                    </TableCell>
+                    <TableCell>
+                      {customer[6]}
                     </TableCell>
                   </TableRow>
                 );
